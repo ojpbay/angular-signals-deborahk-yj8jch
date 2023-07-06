@@ -23,6 +23,8 @@ import { FormsModule } from '@angular/forms';
         {{ v.name }}
       </div>
 
+      <div>{{currentTime()}}</div>
+
       <input type="button" (click)="onClick()" value="Do something" />
   `,
 })
@@ -40,6 +42,12 @@ export class App {
 
   exPrice = computed(() => this.selectedVehicle().price * this.quantity());
   color = computed(() => (this.exPrice() > 50000 ? 'green' : 'blue'));
+
+  dateNow = signal<Date>(new Date());
+
+  currentTime = computed(() => {
+    return `${this.dateNow().getHours()}:${this.dateNow().getMinutes()}.${this.dateNow().getSeconds()}`;
+  });
 
   constructor() {
     console.log(this.quantity());
@@ -72,7 +80,8 @@ export class App {
   }
 
   onClick() {
-    this.quantity.set(new Date().getSeconds());
+    this.dateNow.set(new Date());
+    this.quantity.set(this.dateNow().getSeconds());
   }
 }
 
