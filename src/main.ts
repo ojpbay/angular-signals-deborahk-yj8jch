@@ -23,9 +23,9 @@ import { FormsModule } from '@angular/forms';
         {{ v.name }}
       </div>
 
-      <div>{{currentTime()}}</div>
+      <div style="margin-top: 2rem;">{{currentTime()}}</div>
 
-      <input type="button" (click)="onClick()" value="Do something" />
+      <input type="button" (click)="onClick()" value="Set quantity to current seconds" />
   `,
 })
 export class App {
